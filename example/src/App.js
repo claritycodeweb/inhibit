@@ -38,6 +38,7 @@ const App = () => {
       <LinkTo
         to={'https://claritycode.herokuapp.com/'}
         name='ClarityCode'
+        className="link"
       >
         <span>link default</span>
       </LinkTo>
@@ -45,6 +46,7 @@ const App = () => {
         to={'https://claritycode.herokuapp.com/'}
         name='ClarityCode'
         Spinner={SpinnerStyle}
+        className="link"
       >
         <span>link example with custom spinner 1</span>
       </LinkTo>
@@ -52,6 +54,7 @@ const App = () => {
         to={'https://claritycode.herokuapp.com/'}
         name='ClarityCode'
         Spinner={SpinnerClass}
+        className="link"
       >
         <span>link example with custom spinner 2</span>
       </LinkTo>

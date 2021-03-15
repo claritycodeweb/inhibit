@@ -13,7 +13,13 @@ export const DefaultSpinner = ({ to, name }) => {
   )
 }
 
-export const Inhibit = ({ to, name, children, Spinner = DefaultSpinner }) => {
+export const Inhibit = ({
+  to,
+  name,
+  children,
+  className,
+  Spinner = DefaultSpinner
+}) => {
   const onClick = (e) => {
     e.preventDefault()
     var win = window.open('', '_blank')
@@ -48,7 +54,7 @@ export const Inhibit = ({ to, name, children, Spinner = DefaultSpinner }) => {
   }
 
   return (
-    <a href={to} onClick={onClick} className={styles.test}>
+    <a href={to} onClick={onClick} className={className}>
       {children}
     </a>
   )
