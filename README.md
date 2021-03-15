@@ -2,7 +2,7 @@
 
 > Made with create-react-library
 
-[![NPM](https://img.shields.io/npm/v/inhibit.svg)](https://www.npmjs.com/package/@claritycodeweb/inhibit) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@claritycodeweb/inhibit.svg)](https://www.npmjs.com/package/@claritycodeweb/inhibit) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![npm bundle size (minified)](https://img.shields.io/bundlephobia/min/@claritycodeweb/inhibit.svg)](https://www.npmjs.com/package/@claritycodeweb/inhibit)
 
 ## Inhibit
@@ -12,8 +12,12 @@ Heroku is super cool platform to host your projects for free. If an app has a fr
 ## Install
 
 ```bash
-npm install --save inhibit
+npm install --save @claritycodeweb/inhibit
 ```
+
+## Live example
+[Link to example](https://claritycodeweb.github.io/inhibit/)
+
 ## Simple Usage
 
 ```jsx
