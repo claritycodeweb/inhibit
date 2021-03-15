@@ -18,6 +18,7 @@ export const Inhibit = ({
   name,
   children,
   className,
+  title,
   Spinner = DefaultSpinner
 }) => {
   const onClick = (e) => {
@@ -54,7 +55,7 @@ export const Inhibit = ({
   }
 
   return (
-    <a href={to} onClick={onClick} className={className}>
+    <a href={to} onClick={onClick} title={title} className={className}>
       {children}
     </a>
   )
