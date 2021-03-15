@@ -1,6 +1,6 @@
 {
   "name": "@claritycodeweb/inhibit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Wait until webpage is ready to display",
   "author": "Rafał Pisarczyk",
   "license": "MIT",
