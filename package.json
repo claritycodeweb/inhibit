@@ -1,10 +1,18 @@
 {
-  "name": "inhibit",
+  "name": "@claritycodeweb/inhibit",
   "version": "1.0.0",
-  "description": "Made with create-react-library",
+  "description": "Wait until webpage is ready to display",
   "author": "Rafał Pisarczyk",
   "license": "MIT",
-  "repository": "Rafał Pisarczyk/inhibit",
+  "repository": "claritycodeweb/inhibit",
+  "keywords": [
+    "react",
+    "inhibit",
+    "heroku",
+    "npm",
+    "package",
+    "claritycodeweb"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",

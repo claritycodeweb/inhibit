@@ -1,80 +1,35 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import styles from './styles.module.css'
+import { copyStyles } from './utils'
 
-const Spinner = ({ to }) => {
+export const DefaultSpinner = ({ to, name }) => {
   useEffect(() => {}, [])
   return (
-    <div className={styles.center}>
-      <div className={styles.spinner}>
-        <div />
-        <div />
-      </div>
-      <span className={styles.url}>{to}</span>
+    <div className={styles.spinner}>
+      <span className={styles.spinner__url}>Wait for {name || to}</span>
     </div>
   )
 }
 
-function copyStyles(source, target) {
-  Array.from(source.styleSheets).forEach((styleSheet) => {
-    // For <style> elements
-    let rules
-    try {
-      rules = styleSheet.cssRules
-    } catch (err) {
-      console.error(err)
-    }
-    if (rules) {
-      const newStyleEl = source.createElement('style')
-
-      // Write the text of each rule into the body of the style element
-      Array.from(styleSheet.cssRules).forEach((cssRule) => {
-        const { cssText, type } = cssRule
-        let returnText = cssText
-        // Check if the cssRule type is CSSImportRule (3) or CSSFontFaceRule (5) to handle local imports on a about:blank page
-        // '/custom.css' turns to 'http://my-site.com/custom.css'
-        if ([3, 5].includes(type)) {
-          returnText = cssText
-            .split('url(')
-            .map((line) => {
-              if (line[1] === '/') {
-                return `${line.slice(0, 1)}${
-                  window.location.origin
-                }${line.slice(1)}`
-              }
-              return line
-            })
-            .join('url(')
-        }
-        newStyleEl.appendChild(source.createTextNode(returnText))
-      })
-
-      target.head.appendChild(newStyleEl)
-    } else if (styleSheet.href) {
-      // for <link> elements loading CSS from a URL
-      const newLinkEl = source.createElement('link')
-
-      newLinkEl.rel = 'stylesheet'
-      newLinkEl.href = styleSheet.href
-      target.head.appendChild(newLinkEl)
-    }
-  })
-}
-
-export const ExampleComponent = ({ text, to }) => {
+export const Inhibit = ({ to, name, children, Spinner = DefaultSpinner }) => {
   const onClick = (e) => {
     e.preventDefault()
     var win = window.open('', '_blank')
+
     win.document.write(
       `<html>
         <head></head>
         <body>
+
+         <div class="inhibit"></div>
         
           <script type='text/javascript'>
             const func = () => {
-              // window.location.href = '${to}'
+              window.location.href = '${to}'
             }
-      
+
             setTimeout(func, 200);
           </script>
         </body>
@@ -83,33 +38,23 @@ export const ExampleComponent = ({ text, to }) => {
 
     win.onload = function () {
       copyStyles(window.document, win.document)
-      ReactDOM.render(<Spinner to={to} />, win.document.querySelector('body'))
+      ReactDOM.render(
+        <Spinner to={to} name={name} />,
+        win.document.querySelector('.inhibit')
+      )
     }
 
     win.document.close()
-
-    // window.open(to, '_blank')
-    // window
-    //   .fetch('https://www.google.com/', {
-    //     mode: 'no-cors',
-    //     credentials: 'same-origin'
-    //   })
-    //   .then((res) => {
-    //     if (res.ok) {
-    //       console.info('can by open')
-    //     } else {
-    //       console.log('res', res)
-    //       throw new Error({
-    //         status: res.status,
-    //         ok: res.ok
-    //       })
-    //     }
-    //   })
   }
 
   return (
     <a href={to} onClick={onClick} className={styles.test}>
-      {text}
+      {children}
     </a>
   )
+}
+
+Inhibit.propTypes = {
+  to: PropTypes.string.isRequired,
+  name: PropTypes.string
 }
