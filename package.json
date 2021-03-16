@@ -1,7 +1,7 @@
 {
   "name": "@claritycodeweb/inhibit",
   "version": "1.0.4",
-  "description": "Wait until webpage is ready to display",
+  "description": "React inhibit component - slow down redirect",
   "author": "Rafał Pisarczyk",
   "license": "MIT",
   "repository": "claritycodeweb/inhibit",
